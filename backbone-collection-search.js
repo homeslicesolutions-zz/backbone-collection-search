@@ -9,17 +9,23 @@
   _.extend(Backbone.Collection.prototype, {  
 
     //@ Default Matcher - may be overwritten
-    matcher: function(expected, actual ) {
+    matcher: function(expected, actual) {
       actual = actual.toString().toLowerCase();
       return actual.indexOf( expected.toLowerCase() ) >= 0;
     },
 
     //@ Search function
-    search: function(attributes, keyword, delay) {
+    search: function(keyword, attributes, delay) {
+
+      // If collection empty get out
+      if (!this.models.length) return;
 
       // Variables
-      var that = this,
-          delay = delay || 10;
+      var that = this;
+      var delay = delay || 10;
+      
+      // Attributes (TODO: IMPROVE THIS)
+      var attributes = attributes && attributes.length ? attributes : _.keys( this.model[0].attributes );
 
       // Clear out timeout
       this._searchTimeout = this._searchTimeout && clearTimeout(this._searchTimeout);

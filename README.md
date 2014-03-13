@@ -2,7 +2,7 @@ Backbone.Collection.search
 ==========================
 A keyword search plugin for Backbone.Collections
 
-This plugin adds an asynchromous "search" method to allow keyword search through the model's attributes in the collection. 
+This plugin adds an asynchromous "search" method to allow keyword search through the model's attributes in the collection. This is a great plugin for implementation of typeahead widgets.
 
 ### How to use
 ```
@@ -34,7 +34,7 @@ books.on('search', function( results ){ alert( results.pluck('title') ) });
 ```
 ### matcher
 #### collection.matcher( needle, haystack )
-`matcher` is used to test the query against the attribute value.  In the given default method, the search is doing a simple "indexOf" string search.  It returns `true` if it finds a match. This can be customized to a more robust matcher if desired (i.e. RegExp);  
+`matcher` is used to test the query against the attribute value.  In the given default method, the search is doing a simple "indexOf" string search. It returns `true` if it finds a match. This can be customized to a more robust matcher if desired (i.e. RegExp).  In theory you may use different object types, but the provided method is dealing with strings.
 
 #### collection.getSearchResults()
 This will return the most recent queried results. The resulted collection also has a method `getSearchQuery()` to get the search query used to get that result.

@@ -34,7 +34,7 @@
         results = new Backbone.Collection();
         
         // Passthrough query
-        results.searchQuery = keyword;
+        results._searchQuery = keyword;
 
         // Iterate through collection models
         that.each( function( model ){
@@ -59,8 +59,9 @@
           })
         });
 
-        // Cache the recently searched
-        that._recentlySearched = results;
+        // Cache the recently searched metadata
+        that._searchQuery = keyword;
+        that._searchResults = results;
 
         // Trigger "search" and return with the new resulted collection
         that.trigger('search', results );
@@ -73,6 +74,7 @@
     },
 
     //_Cache
+    _searchQuery: null,
     _recentlySearched: null
 
   });

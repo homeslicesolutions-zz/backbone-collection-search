@@ -33,9 +33,12 @@
         // Instantiate new Collection
         results = new Backbone.Collection();
         
-        // Passthrough query
+        // Passthrough set and get functions for the search query
+        results.getSearchQuery = function() { 
+          return _searchQuery;
+        }
         results._searchQuery = keyword;
-
+        
         // Iterate through collection models
         that.each( function( model ){
           
@@ -60,7 +63,6 @@
         });
 
         // Cache the recently searched metadata
-        that._searchQuery = keyword;
         that._searchResults = results;
 
         // Trigger "search" and return with the new resulted collection
@@ -72,10 +74,14 @@
       // Append Delay
       }, delay);
     },
+    
+    //@ Get recent search results
+    getSearchResults: function() {
+      return _searchResults;
+    },
 
     //_Cache
-    _searchQuery: null,
-    _searchResults: null
+    _searchResults: null,
 
   });
 

@@ -9,9 +9,10 @@
   _.extend(Backbone.Collection.prototype, {  
 
     //@ Default Matcher - may be overwritten
-    matcher: function(expected, actual) {
-      actual = actual.toString().toLowerCase();
-      return actual.indexOf( expected.toLowerCase() ) >= 0;
+    matcher: function(needle, haystack) {
+      needle = needle.toString().toLowerCase();
+      haystack = haystack.toString().toLowerCase();
+      return haystack.indexOf( needle ) >= 0;
     },
 
     //@ Search function
@@ -34,10 +35,11 @@
         results = new Backbone.Collection();
         
         // Passthrough set and get functions for the search query
-        results.getSearchQuery = function() { 
-          return _searchQuery;
-        }
         results._searchQuery = keyword;
+        
+        results.getSearchQuery = function() { 
+          return results._searchQuery;
+        }
         
         // Iterate through collection models
         that.each( function( model ){
@@ -77,7 +79,7 @@
     
     //@ Get recent search results
     getSearchResults: function() {
-      return _searchResults;
+      return this._searchResults;
     },
 
     //_Cache

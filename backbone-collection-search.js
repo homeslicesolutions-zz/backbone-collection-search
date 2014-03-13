@@ -21,11 +21,8 @@
       if (!this.models.length) return;
 
       // Variables
-      var that = this;
-      var delay = delay || 10;
-      
-      // Attributes (TODO: IMPROVE THIS)
-      var attributes = attributes && attributes.length ? attributes : _.keys( this.model[0].attributes );
+      var that = this,
+          delay = delay || 10;
 
       // Clear out timeout
       this._searchTimeout = this._searchTimeout && clearTimeout(this._searchTimeout);
@@ -35,15 +32,21 @@
 
         // Instantiate new Collection
         results = new Backbone.Collection();
+        
+        // Passthrough query
+        results.searchQuery = keyword;
 
         // Iterate through collection models
         that.each( function( model ){
+          
+          // Use Set attributes OR search through all attributes
+          attributes = attributes && attributes.length ? attributes : _.keys( model.attributes );
 
           // Iterate through each stated attributes
           _.every( attributes, function( attribute ){
 
             // Get the attribute value
-            var attrValue = model.get(attribute) && model.get(attribute).toString();
+            var attrValue = model.get(attribute);
 
             // Test if found in any attribute add, and on to the next
             if (attrValue && that.matcher( keyword, attrValue )) {

@@ -75,7 +75,7 @@
 
     //_Cache
     _searchQuery: null,
-    _recentlySearched: null
+    _searchResults: null
 
   });
 

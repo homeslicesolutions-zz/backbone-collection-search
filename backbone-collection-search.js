@@ -1,4 +1,4 @@
-//     Backbone.Collection.search v0.1
+//     Backbone.Collection.search v0.2
 //     by Joe Vu - joe.vu@homeslicesolutions.com
 //     For all details and documentation:
 //     https://github.com/homeslicesolutions/backbone-collection-search
@@ -50,6 +50,11 @@
 
       // For use of returning un-async
       return collection;
+    },
+
+    //@ Get recent search query
+    getSearchQuery: function() {
+      return this.getSearchResults().getSearchQuery();
     },
     
     //@ Get recent search results

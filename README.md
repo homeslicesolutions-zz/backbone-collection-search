@@ -48,9 +48,13 @@ books.on('search', function(){
   alert( results.getSearchQuery() )
   // Will result: "rowling"
 });
+
+#### collection.getSearchQuery()
+This will return the most recent search query.  It will pull directly from `getSearchResults()`
+
 ```
 
-## As a simple filter
+## As a simple utility filter
 Like the built in underscore methods, it returns the collection. Note: this won't work with the ajax version.
 ```js
 var stephanieBooks = books.search('stephanie', ['author']);
@@ -61,7 +65,7 @@ alert(stephanieBooks.pluck('title'))
 
 ## Ajax version
 ### backbone-collection-search-ajax.js
-If a front-end solution doesn't suffice, there is also an ajax support using the `fetch` function and ability to add parameters.  The mark up will be exactly the same, and it will similarly fire 'search' when the call is finished.  The appended parameters are `keyword` and `attributes[]`
+If a front-end solution doesn't suffice, there is also an ajax support using the `fetch` function and ability to add parameters.  This is a starter piece to making that server-side search function.  The mark up on the front-end will be exactly the same, and it will similarly fire 'search' when the call is finished.  The appended parameters are `keyword` and `attributes[]`
 
 ```
 GET http://somelibrary.com/api/books?keyword=rowling&attributes[]=author&attributes[]=title
@@ -106,6 +110,16 @@ requirejs.config({
 <script src="assets/js/backbone.js" />
 <script src="assets/js/backbone-collection-search.js" />
 ```
+
+## Versions
+#### v0.2
+Code needed some love and refactoring so I had to make the changes
+ - Removed `delay` because I thought it was unnessary.  Any delay (like for a typeahead widget) should be done in the View.
+ - Added a way to return the collection without needing to wait for the trigger as a utility filter.
+ - Added AJAX version as a starter piece to making a server-side search.
+
+#### v0.1
+ - First commit!
 
 
 

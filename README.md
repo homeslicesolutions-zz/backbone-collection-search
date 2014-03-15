@@ -48,11 +48,9 @@ books.on('search', function(){
   alert( results.getSearchQuery() )
   // Will result: "rowling"
 });
-
+```
 #### collection.getSearchQuery()
 This will return the most recent search query.  It will pull directly from `getSearchResults()`
-
-```
 
 ## As a simple utility filter
 Like the built in underscore methods, it returns the collection. Note: this won't work with the ajax version.

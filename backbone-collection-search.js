@@ -16,65 +16,39 @@
     },
 
     //@ Search function
-    search: function(keyword, attributes, delay) {
+    search: function(keyword, attributes) {
 
       // If collection empty get out
       if (!this.models.length) return;
 
-      // Variables
-      var that = this,
-          delay = delay || 10;
-
-      // Clear out timeout
-      this._searchTimeout = this._searchTimeout && clearTimeout(this._searchTimeout);
-
-      // Run
-      this._searchTimeout = setTimeout(function(){
-
-        // Instantiate new Collection
-        results = new Backbone.Collection();
-        
-        // Passthrough set and get functions for the search query
-        results._searchQuery = keyword;
-        
-        results.getSearchQuery = function() { 
-          return results._searchQuery;
-        }
-        
-        // Iterate through collection models
-        that.each( function( model ){
-          
-          // Use Set attributes OR search through all attributes
-          attributes = attributes && attributes.length ? attributes : _.keys( model.attributes );
-
-          // Iterate through each stated attributes
-          _.every( attributes, function( attribute ){
-
-            // Get the attribute value
-            var attrValue = model.get(attribute);
-
-            // Test if found in any attribute add, and on to the next
-            if (attrValue && that.matcher( keyword, attrValue )) {
-              results.add( model );
-              return false;
-            } else {
-              return true;
-            }
-
-          })
+      // Filter
+      var matcher = this.matcher;
+      var results = this.filter(function( model ){  
+        attributes = attributes && attributes.length ? attributes : _.keys( model.attributes );
+        return !_.every( attributes, function( attribute ){
+          return !matcher( keyword, model.get( attribute ) );
         });
+      });
 
-        // Cache the recently searched metadata
-        that._searchResults = results;
+      // Instantiate new Collection
+      var collection = new Backbone.Collection( results );
+      collection._searchQuery = keyword;
+      collection.getSearchQuery = function() { 
+        return this._searchQuery;
+      }
 
-        // Trigger "search" and return with the new resulted collection
-        that.trigger('search', results );
+      // Cache the recently searched metadata
+      this._searchResults = collection;
 
-        // Exit
-        that._searchTimeout = clearTimeout(that._searchTimeout);
+      // Async support with trigger
+      var that = this;
+      var t = setTimeout(function(){
+        that.trigger('search', collection);
+        clearTimeout(t);
+      },10);
 
-      // Append Delay
-      }, delay);
+      // For use of returning un-async
+      return collection;
     },
     
     //@ Get recent search results
@@ -83,7 +57,7 @@
     },
 
     //_Cache
-    _searchResults: null,
+    _searchResults: null
 
   });
 

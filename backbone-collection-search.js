@@ -10,6 +10,7 @@
 
     //@ Default Matcher - may be overwritten
     matcher: function(needle, haystack) {
+      if (!needle || !haystack) return;
       needle = needle.toString().toLowerCase();
       haystack = haystack.toString().toLowerCase();
       return haystack.indexOf( needle ) >= 0;

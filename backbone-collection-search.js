@@ -54,7 +54,7 @@
 
     //@ Get recent search query
     getSearchQuery: function() {
-      return this.getSearchResults().getSearchQuery();
+      return this.getSearchResults() && this.getSearchResults().getSearchQuery();
     },
     
     //@ Get recent search results

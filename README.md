@@ -2,11 +2,7 @@ Backbone.Collection.search
 ==========================
 A keyword search plugin for Backbone.Collections
 
-<<<<<<< HEAD
 This plugin adds a "search" method to allow keyword search through the model's attributes in the collection. This is a great plugin for implementation of typeahead widgets.
-=======
-This plugin adds an asynchromous "search" method to allow keyword search through the model's attributes in the collection. This is a great plugin for implementation of typeahead widgets.
->>>>>>> FETCH_HEAD
 
 ### How to use
 ```
@@ -23,11 +19,7 @@ var books = new Backbone.Collection();
 
 books.add(new Book({ author: 'J. K. Rowling', related: 'Stephanie Meyer books', title: 'Harry Potter #1' }));
 books.add(new Book({ author: 'P&B Pollack', related: 'Stephanie Meyer books', title: 'Who Is J. K. Rowling?' }));
-<<<<<<< HEAD
 books.add(new Book({ author: 'Stephanie Meyer', related: 'J. K. Rowling books', title: 'Twilight'}));
-=======
-books.add(new Book({ author: 'Stephenie Meyer', related: 'J. K. Rowling books', title: 'Twilight'}));
->>>>>>> FETCH_HEAD
 
 books.search('rowling', ['author','title']);
 
@@ -39,12 +31,6 @@ books.search('rowling');
 
 books.on('search', function( results ){ alert( results.pluck('title') ) });
 // Will result: "Harry Potter #1,Who Is J. K. Rowling?,Twilight"
-```
-```js
-books.search('rowling');
-
-books.on('search', function( results ){ alert( results.pluck('title') ) });
-// Will result: Harry Potter #1,Who Is J. K. Rowling?,Twilight
 ```
 ### matcher
 #### collection.matcher( needle, haystack )

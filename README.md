@@ -36,6 +36,7 @@ books.on('search', function( results ){ alert( results.pluck('title') ) });
 #### collection.matcher( needle, haystack )
 `matcher` is used to test the query against the attribute value.  In the given default method, the search is doing a simple "indexOf" string search. It returns `true` if it finds a match. This can be customized to a more robust matcher if desired (i.e. RegExp).  In theory you may use different object types, but the provided method is dealing with strings.
 
+### getSearchResults
 #### collection.getSearchResults()
 This will return the most recent queried results. The resulted collection also has a method `getSearchQuery()` to get the search query used to get that result.
 ```js
@@ -49,6 +50,7 @@ books.on('search', function(){
   // Will result: "rowling"
 });
 ```
+### getSearchQuery
 #### collection.getSearchQuery()
 This will return the most recent search query.  It will pull directly from `getSearchResults()`
 
@@ -110,6 +112,10 @@ requirejs.config({
 ```
 
 ## Versions
+#### v0.2.1
+Streamlined the way to retrieve the recent query's keyword and attribute
+ - `getSearchQuery()` now returns an object from the defined "searching" object literal in the new collection
+
 #### v0.2
 Code needed some love and refactoring so I had to make the changes
  - Removed `delay` because I thought it was unnessary.  Any delay (like for a typeahead widget) should be done in the View.

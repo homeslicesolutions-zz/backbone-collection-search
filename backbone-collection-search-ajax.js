@@ -24,10 +24,13 @@
         success: function( collection ){
 
           // Instantiate new Collection
-          collection._searchQuery = keyword;
+          collection.searching = { 
+            keyword: keyword,
+            attributes: attributes
+          };
           collection.getSearchQuery = function() { 
             return this._searchQuery;
-          }
+          };
 
           // Cache the recently searched metadata
           that._searchResults = collection;

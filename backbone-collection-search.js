@@ -33,10 +33,13 @@
 
       // Instantiate new Collection
       var collection = new Backbone.Collection( results );
-      collection._searchQuery = keyword;
+      collection.searching = { 
+        keyword: keyword,
+        attributes: attributes
+      };
       collection.getSearchQuery = function() { 
-        return this._searchQuery;
-      }
+        return this.searching;
+      };
 
       // Cache the recently searched metadata
       this._searchResults = collection;

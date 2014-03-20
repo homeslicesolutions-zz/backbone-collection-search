@@ -31,6 +31,9 @@
         });
       });
 
+      // If keyword is blank, return all
+      results = !results || !results.length ? this.models : results;
+
       // Instantiate new Collection
       var collection = new Backbone.Collection( results );
       collection.searching = { 

@@ -1,4 +1,4 @@
-//     Backbone.Collection.search-ajax v0.2
+//     Backbone.Collection.search-ajax v0.2.1
 //     by Joe Vu - joe.vu@homeslicesolutions.com
 //     For all details and documentation:
 //     https://github.com/homeslicesolutions/backbone-collection-search
@@ -21,9 +21,10 @@
           keyword: keyword,
           attributes: attributes
         },
-        success: function( collection ){
+        success: function( results ){
 
           // Instantiate new Collection
+          var collection = new Backbone.Collection( results.models );
           collection.searching = { 
             keyword: keyword,
             attributes: attributes

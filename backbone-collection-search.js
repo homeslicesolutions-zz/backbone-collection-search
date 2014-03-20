@@ -1,4 +1,4 @@
-//     Backbone.Collection.search v0.2
+//     Backbone.Collection.search v0.2.1
 //     by Joe Vu - joe.vu@homeslicesolutions.com
 //     For all details and documentation:
 //     https://github.com/homeslicesolutions/backbone-collection-search

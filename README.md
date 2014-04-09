@@ -83,11 +83,12 @@ The plugin is non-destructive to all the existing behaviors.
 ### Require.js AMD
 
 ```js
-requirejs.config({
+require.config({
   paths: {
     'underscore': 'assets/js/underscore',
     'backbone': 'assets/js/backbone',
-    'backbone-collection-search': 'assets/js/backbone-collection-search'
+    'backbone-collection-search': 'assets/js/backbone-collection-search',
+    'backbone-collection-search-ajax' : 'asset/js/backbone-collection-search-ajax'
   },
 
   shim: {
@@ -98,17 +99,28 @@ requirejs.config({
     'backbone-collection-search': {
       deps: ['underscore', 'backbone'],
       exports: 'Backbone'
+    },
+    'backbone-collection-search-ajax': { 
+      deps: ['underscore', 'backbone'],
+      exports: 'Backbone'
     }
   }
 });
+```
+```js
+define(['backbone-collection-search'], function( Backbone ) {  ...  });
+  OR
+define(['backbone-collection-search-ajax'], function( Backbone ) {  ...  });
 ```
 
 ### Static
 
 ```html
-<script src="assets/js/underscore.js" />
-<script src="assets/js/backbone.js" />
-<script src="assets/js/backbone-collection-search.js" />
+<script src="assets/js/underscore.js"></script>
+<script src="assets/js/backbone.js"></script>
+<script src="assets/js/backbone-collection-search.js"></script>
+  OR
+<script src="assets/js/backbone-collection-search-ajax.js"></script>
 ```
 
 ## Versions

@@ -1,0 +1,17 @@
+{
+  "name": "backbone-collection-search",
+  "version": "0.2.1",
+  "description": "A keyword search plugin for Backbone.Collections",
+  "main": "backbone-collection-search.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": "homeslicesolutions/backbone-collection-search",
+  "keywords": ["backbone"],
+  "author": "Joe Vu",
+  "license": "MIT",
+  "dependencies": {
+    "backbone": "^1.0.0",
+    "underscore": "^1.6.0"
+  }
+}

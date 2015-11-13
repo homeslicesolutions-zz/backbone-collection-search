@@ -3,7 +3,17 @@
 //     For all details and documentation:
 //     https://github.com/homeslicesolutions/backbone-collection-search
 
-!function(_, Backbone){
+;(function (root, factory) {
+
+  if (typeof define === 'function' && define.amd) {
+    define(['underscore', 'backbone'], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('underscore'), require('backbone'));
+  } else {
+    factory(root._, root.Backbone);
+  }
+
+}(this, function (_, Backbone) {
 
   // Extending out
   _.extend(Backbone.Collection.prototype, {  
@@ -57,4 +67,6 @@
 
   });
 
-}(_, Backbone);
+  return Backbone;
+
+}));
